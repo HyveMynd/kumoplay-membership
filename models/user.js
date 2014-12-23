@@ -3,6 +3,7 @@
  */
 
 var assert = require('assert');
+var hat = require('hat');
 
 var User = function(args){
 	assert.ok(args.email && args.firstName && args.lastName, "Email, first, and last name is required");
@@ -19,7 +20,7 @@ var User = function(args){
 	user.signInCount = args.signInCount || 0;
 	user.lastLoginAt = args.lastLoginAt || new Date();
 	user.currentLoginAt = args.currentLoginAt || new Date();
-	user.authenticationToken = args.authenticationToken || "ASDAS";
+	user.authenticationToken = args.authenticationToken || hat();
     user.hashedPassword = args.hashedPassword || null;
 
 	return user;
