@@ -3,6 +3,6 @@
   "email": "rttracktest@gmail.com",
   "password": "rtriotinto",
   "body": "Please follow this link to reset your password. The link will expire in 2 hours.\n\n",
-  "link": "http://localhost:3000/forgot?tk=",
+  "link": "http://localhost:3000/reset?tk=",
   "subject": "MobileTrack Password Reset"
 }

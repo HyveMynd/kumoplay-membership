@@ -1,6 +1,6 @@
 {
   "name": "user-module",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "author": "HyveMynd",
   "description": "A membership system patterened after devise",
   "repository": {
@@ -16,8 +16,8 @@
   },
   "dependencies": {
     "async": "^0.9.0",
-    "bcrypt": "^0.8.0",
     "bcrypt-nodejs": "0.0.3",
+    "bluebird": "^2.7.1",
     "bunyan": "^1.0.1",
     "hat": "0.0.3",
     "nodemailer": "^1.3.0",
