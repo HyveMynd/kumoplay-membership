@@ -19,7 +19,7 @@ describe("Password Management", function () {
     describe("request a reset", function () {
         var user = {};
         before(function(done){
-            this.timeout(4000);
+            this.timeout(5000);
             db.users.destroyAll(function (err) {
                 reg.applyForMembership({email : "asd@dsa.com", password: "a", confirm: "a", firstName: 'asd', lastName: 'dsa'}, function (err, result) {
                     pm.sendForgotPasswordEmail(result.user.email).then(function (result) {
@@ -65,6 +65,93 @@ describe("Password Management", function () {
         it("has a new password", function () {
             oldpass.should.not.equal(newpass);
         });
+    });
 
+    describe("empty email", function(){
+        var user = {};
+        var msg = null;
+        before(function(done){
+            pm.sendForgotPasswordEmail(null).then(function (result) {
+                user = result;
+                done();
+            }).catch(function (err) {
+                user = null;
+                msg = err;
+                done();
+            }).done();
+        });
+
+        it("fails", function () {
+            should.not.exist(user);
+        });
+        it("has a message", function () {
+            msg.should.equal("Must have an email");
+        });
+    });
+
+    describe("email does not exist", function(){
+        var user = {};
+        var msg = null;
+        before(function(done){
+            pm.sendForgotPasswordEmail("asdgawreg@ewrtqergwgervs").then(function (result) {
+                user = result;
+                done();
+            }).catch(function (err) {
+                user = null;
+                msg = err;
+                done();
+            }).done();
+        });
+
+        it("fails", function () {
+            should.not.exist(user);
+        });
+        it("has a message", function () {
+            msg.should.equal("User does not exist");
+        });
+    });
+
+    describe("passwords do not match", function(){
+        var user = {};
+        var msg = null;
+        before(function(done){
+            pm.resetPassword("asd", 'a', 'b').then(function (result) {
+                user = result;
+                done();
+            }).catch(function (err) {
+                user = null;
+                msg = err;
+                done();
+            }).done();
+        });
+
+        it("fails", function () {
+            should.not.exist(user);
+        });
+        it("has a message", function () {
+            msg.should.equal("Passwords do not match");
+        });
+    });
+
+    describe("token does not exist", function(){
+        var user = {};
+        var msg = null;
+        before(function(done){
+            pm.resetPassword("asd", 'a', 'a').then(function (result) {
+                user = result;
+                done();
+            }).catch(function (err) {
+                user = null;
+                msg = err;
+                done();
+            }).done();
+        });
+
+        it("fails", function () {
+            should.not.exist(user);
+        });
+        it("has a message", function () {
+            msg.should.equal("Token is invalid.");
+        });
     });
 });

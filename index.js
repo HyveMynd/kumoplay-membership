@@ -69,7 +69,7 @@ var Membership = function(dbName) {
                 }).catch(function (err) {
                     console.log(err.message);
                     return reject(err);
-                }).done();
+                }, reject);
             });
         });
     };
@@ -84,7 +84,7 @@ var Membership = function(dbName) {
                 }).catch(function (err) {
                     console.log(err.message);
                     return reject(err);
-                }).done();
+                }, reject);
             })
         });
     };
