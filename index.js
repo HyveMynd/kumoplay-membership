@@ -7,6 +7,8 @@ var Registration = require('./lib/registration');
 var Authentication = require('./lib/authentication');
 var db = require('revision');
 var assert = require('assert');
+var PasswordManagement = require('./lib/passwordManagement');
+var Promise = require('bluebird');
 
 var Membership = function(dbName) {
     var self = this;
@@ -54,6 +56,36 @@ var Membership = function(dbName) {
                 firstName: firstName,
                 lastName: lastName
             }, next);
+        });
+    };
+
+    self.forgotPassword = function (email) {
+        return new Promise(function (resolve, reject) {
+            db.connect({db: dbName}, function (err, db) {
+                assert.ok(err === null, err);
+                var pm = new PasswordManagement(db);
+                pm.sendForgotPasswordEmail(email).then(function () {
+                    return resolve();
+                }).catch(function (err) {
+                    console.log(err.message);
+                    return reject(err);
+                }).done();
+            });
+        });
+    };
+
+    self.resetPassword = function (token, password, confirm) {
+        return new Promise(function (resolve, reject) {
+            db.connect({db:dbName}, function (err, db) {
+                assert.ok(err === null, err);
+                var pm = new PasswordManagement(db);
+                pm.resetPassword(token, password, confirm).then(function (user) {
+                    return resolve();
+                }).catch(function (err) {
+                    console.log(err.message);
+                    return reject(err);
+                }).done();
+            })
         });
     };
 

@@ -2,7 +2,7 @@
   "service": "gmail",
   "email": "rttracktest@gmail.com",
   "password": "rtriotinto",
-  "body": "Please verify you email address by following the link below. The link will expire in 2 hours.\n\n",
-  "link": "http://localhost:3000/verify?tk=",
-  "subject": "MobileTrack Email Verification"
+  "body": "Please follow this link to reset your password. The link will expire in 2 hours.\n\n",
+  "link": "http://localhost:3000/forgot?tk=",
+  "subject": "MobileTrack Password Reset"
 }

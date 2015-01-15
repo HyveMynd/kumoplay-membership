@@ -7,5 +7,8 @@
   "couldNotSendEmail": "Could not send verification email.",
   "emailSent": "An email has been sent to you. Please check your email and verify your account.",
   "invalidToken": "Token is not valid",
-  "emailVerified": "Your email has been verified. Please log in."
+  "emailVerified": "Your email has been verified. Please log in.",
+  "emailDoesNotExist": "Email does not exist",
+  "needEmail": "Must have an email",
+  "tokenInvalid": "Token is invalid"
 }

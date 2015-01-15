@@ -22,6 +22,7 @@ var User = function(args){
 	user.currentLoginAt = args.currentLoginAt || new Date();
 	user.authenticationToken = args.authenticationToken || hat();
     user.hashedPassword = args.hashedPassword || null;
+	user.resetToken = args.resetToken || null;
 
 	return user;
 };
