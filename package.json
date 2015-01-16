@@ -1,6 +1,6 @@
 {
   "name": "user-module",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "author": "HyveMynd",
   "description": "A membership system patterened after devise",
   "repository": {
